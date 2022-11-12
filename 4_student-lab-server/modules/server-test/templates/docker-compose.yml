@@ -1,0 +1,61 @@
+version: '3.8' 
+services:
+  db:
+    image: mysql:5.7
+    container_name: ${db_host}
+    cap_add:
+      - SYS_NICE
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: '${db_pass}'
+      MYSQL_DATABASE: '${db_name}'
+      MYSQL_USER: 'user'
+      MYSQL_PASSWORD: '${db_pass}'
+    ports:
+      - '${db_port}:${db_port}'
+    volumes:
+      - ./db_init:/docker-entrypoint-initdb.d
+      - db:/var/lib/mysql
+  web:
+    image: jviguerasfortinet/xpertsummit22:php-xs22
+    container_name: frontweb
+    restart: always
+    environment:
+      DBHOST: '${db_host}'
+      DBUSER: 'root'
+      DBNAME: '${db_name}'
+      DBTABLE: '${db_table}'
+      DBPORT: '${db_port}'
+      DBPASS: '${db_pass}'
+    depends_on:
+      - db
+    volumes:
+      - ./web_init:/var/www
+    ports:
+      - "8000:80"
+    stdin_open: true
+    tty: true
+  phpmyadmin:
+    image: phpmyadmin
+    container_name: phpmyadmin
+    restart: always
+    ports:
+      - 8001:80
+    environment:
+      - PMA_ARBITRARY=1
+  checkscript:
+    image: jviguerasfortinet/xpertsummit22:python-xs22
+    container_name: checkscript
+    restart: always
+    environment:
+      DBHOST: '${db_host}'
+      DBUSER: 'root'
+      DBNAME: '${db_name}'
+      DBTABLE: '${db_table}'
+      DBPORT: '${db_port}'
+      DBPASS: '${db_pass}'
+    depends_on:
+      - db
+volumes:
+  db:
+    driver: local
