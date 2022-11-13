@@ -17,7 +17,7 @@ if (mysqli_connect_errno()) {
    exit;
 }
 
-$sql = "SELECT user_sort,server_ip,server_check,server_check FROM ".$table." WHERE server_test=1 ORDER BY server_check";
+$sql = "SELECT `user_id`,`server_ip`,`server_check` FROM ".$table." WHERE server_test=1 ORDER BY server_check";
 $data='';
 
 if ($result = mysqli_query($con,$sql)) {

@@ -18,7 +18,7 @@ resource "aws_eip" "eip-fgt_mgmt" {
 
 // Create the instance Fortigate in AZ1
 resource "aws_instance" "fgt" {
-  ami                  = data.aws_ami_ids.fgt-ond-amis.ids[0]
+  ami                  = data.aws_ami_ids.fgt-ond-amis.ids[1]
   instance_type        = "c5.xlarge"
   availability_zone    = var.region["region_az1"]
   key_name             = var.key-pair_name != null ? var.key-pair_name : aws_key_pair.fgt-vpc-hub-kp[0].key_name

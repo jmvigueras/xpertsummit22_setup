@@ -17,13 +17,13 @@ if (mysqli_connect_errno()) {
    exit;
 }
 
-$sql = "SELECT user_sort,server_ip,server_check,server_check FROM ".$table." WHERE server_test=1 ORDER BY server_check";
+$sql = "SELECT `user_id`,`server_ip`,`server_check` FROM ".$table." WHERE server_test=1 ORDER BY server_check";
 $data='';
 
 if ($result = mysqli_query($con,$sql)) {
     while($row = mysqli_fetch_array($result))
     {
-        $data .= '<br> User: ' . $row['user_sort'] .' ServerIP: '. $row['server_ip'] . ' Time: ' . $row['server_check'];
+        $data .= '<br> User: ' . $row['user_id'] .' ServerIP: '. $row['server_ip'] . ' Time: ' . $row['server_check'];
     }
 }
 mysqli_close($con);

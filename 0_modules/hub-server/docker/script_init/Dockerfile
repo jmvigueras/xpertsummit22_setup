@@ -1,4 +1,5 @@
 FROM ubuntu:20.04
+ARG DEBIAN_FRONTEND=noninteractive
 RUN apt-get update
 RUN apt-get upgrade -y
 RUN apt-get install -y python3
@@ -9,5 +10,5 @@ WORKDIR /usr/src/app
 COPY requirements.txt requirements.txt
 RUN pip3 install --no-cache-dir -r requirements.txt
 COPY checkScript.py checkScript.py
-ENTRYPOINT [ "python3" ]
-CMD [ "checkScript.py" ]
+# ENTRYPOINT [ "python3" ]
+CMD ["python3","checkScript.py"]

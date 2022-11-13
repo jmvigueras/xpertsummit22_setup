@@ -58,7 +58,8 @@ else:
         except requests.exceptions.RequestException as e:
           print("Error connection")
         else:
-          if webUrl.status_code == 200 : test_result = "1"
+        #  if webUrl.status_code == 200 : test_result = "1"
+          test_result = "1"
   
         ######################################################
         # Update DB with status (UPDATE: server_test,timestamp)
