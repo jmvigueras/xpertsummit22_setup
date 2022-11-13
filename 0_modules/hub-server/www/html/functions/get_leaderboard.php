@@ -24,7 +24,7 @@ if ($result = mysqli_query($con,$sql)) {
     $i = 1;
     while($row = mysqli_fetch_array($result))
     {
-        $data .= '<br>' . $i .' User: ' . $row['user_sort'] .' ServerIP: '. $row['server_ip'] . ' Time: ' . $row['server_check'];
+        $data .= '<br>' . $i .' User: ' . $row['user_id'] .' ServerIP: '. $row['server_ip'] . ' Time: ' . $row['server_check'];
         $i++;
     }
 }
