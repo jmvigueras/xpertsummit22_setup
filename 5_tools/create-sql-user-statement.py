@@ -6,12 +6,15 @@
 
 import json
 import ipaddress
+
+# Update with your account ID
+accountid = '042579265884'
   
 # Opening tfstate from deployments
 # - Deploy terraform modules before execute this script
 users_tfstate = open('../1_student-accounts/terraform.tfstate')
 cloud9_tfstate = open('../3_student-IDE-cloud9/terraform.tfstate')
-hub_tfstate = open('../2_student-golden-vpc/terraform.tfstate')
+hub_tfstate = open('../2_student-hub-vpc/terraform.tfstate')
 
 # Opening users emails
 # - Update with file name with student emails
@@ -24,7 +27,6 @@ hub = json.load(hub_tfstate)
 
 # Variables 
 externalid_token = users['outputs']['externalid-token']['value']
-accountid = '042579265884'
 hub_fgt_pip = hub['outputs']['hub_fgt']['value']['advpn_pip']
 
 i = 0

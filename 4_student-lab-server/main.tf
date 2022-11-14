@@ -34,6 +34,6 @@ resource "random_string" "random_str" {
 data "terraform_remote_state" "student-golden-vpc" {
   backend = "local"
   config  = {
-    path = "../2_student-golden-vpc/terraform.tfstate"
+    path = "../2_student-hub-vpc/terraform.tfstate"
   }
 }

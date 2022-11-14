@@ -9,7 +9,7 @@ resource "random_string" "externalid_token" {
 # Create users with iam-users module
 # - create user peer region
 # - allocate user in path prefix
-# - No in line policy created, permisson granted by UserGroup
+# - basic permissons granted by UserGroup
 # - create role for each user to assume when deploying with Terraform
 #######################################################################################
 

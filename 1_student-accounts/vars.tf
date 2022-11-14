@@ -1,8 +1,7 @@
 ##############################################################################################################
-#
 # FortiGate Terraform deployment
-# Active Passive High Availability MultiAZ with AWS Transit Gateway with VPC standard attachment -
-#
+# - Update variable regions with region where deploy
+# - Update number of user per region to deploy
 ##############################################################################################################
 
 # Prefix for all resources created for this deployment in AWS
@@ -24,7 +23,7 @@ variable "regions" {
   description = "Regions where create users"
   type        = list(string)
   default     = [
- //   "eu-west-1",
+    "eu-west-1",
     "eu-west-2",
     "eu-west-3"
   ]
@@ -33,7 +32,7 @@ variable "regions" {
 variable "user_number-peer-region" {
   description = "Number of user to deploy peer region"
   type        = number
-  default     = 10
+  default     = 1
 }
 
 variable "user_path-prefix" {
