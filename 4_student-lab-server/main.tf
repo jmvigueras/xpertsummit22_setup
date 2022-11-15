@@ -8,10 +8,12 @@ module "server-lab" {
         Project = "xs22"
     }
     
-    eni-server          = data.terraform_remote_state.student-golden-vpc.outputs.hub_eni-server
+    eni-server          = data.terraform_remote_state.student-hub-vpc.outputs.hub_eni-server
     key-pair_name       = var.key-pair_name != null ? var.key-pair_name : aws_key_pair.server-kp[0].key_name
     git_uri             = var.git_uri
     git_uri_app-path    = var.git_uri_app-path
+    lab_fqdn            = var.lab_fqdn
+    externalid-token    = data.terraform_remote_state.student-accounts.outputs.externalid-token
     db                  = var.db
     instance_type       = var.instance_type 
 }
@@ -30,10 +32,18 @@ resource "random_string" "random_str" {
   numeric                = false
 }
 
-// Import data from deployment 1_student-golden-vpc
-data "terraform_remote_state" "student-golden-vpc" {
+// Import data from deployment 2_student-hub-vpc
+data "terraform_remote_state" "student-hub-vpc" {
   backend = "local"
   config  = {
     path = "../2_student-hub-vpc/terraform.tfstate"
+  }
+}
+
+// Import data from deployment 1_student-accounts
+data "terraform_remote_state" "student-accounts" {
+  backend = "local"
+  config  = {
+    path = "../1_student-accounts/terraform.tfstate"
   }
 }

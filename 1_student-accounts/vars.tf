@@ -23,7 +23,7 @@ variable "regions" {
   description = "Regions where create users"
   type        = list(string)
   default     = [
-    "eu-west-1",
+ //   "eu-west-1",
     "eu-west-2",
     "eu-west-3"
   ]
@@ -32,7 +32,7 @@ variable "regions" {
 variable "user_number-peer-region" {
   description = "Number of user to deploy peer region"
   type        = number
-  default     = 1
+  default     = 3
 }
 
 variable "user_path-prefix" {

@@ -42,6 +42,20 @@ variable git_uri_app-path {
   default = "/xpertsummit22_setup/0_modules/hub-server/"
 }
 
+// LAB fqdn
+variable "lab_fqdn" {
+  description = "DNS FQDN lab portal"
+  type = string
+  default = "http://cloudlab.jvigueras-fortinet-site.com"
+}
+
+// External Token ID
+variable "externalid-token" {
+  description = ""
+  type = string
+  default = "externalid"
+}
+
 // DB details
 variable "db" {
   type = map(any)

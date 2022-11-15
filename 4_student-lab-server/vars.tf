@@ -45,13 +45,20 @@ variable git_uri_app-path {
   default = "/xpertsummit22_setup/0_modules/hub-server/"
 }
 
+// LAB fqdn
+variable "lab_fqdn" {
+  description = "DNS FQDN lab portal"
+  type = string
+  default = "cloudlab.jvigueras-fortinet-site.com"
+}
+
 // Database details 
 variable "db" {
   type = map(any)
   default = {
     db_host   = "mysqldb"
     db_user   = "root"
-    db_pass   = "password"
+    db_pass   = "L2e9TPd8LCJvAz7"
     db_name   = "students"
     db_table  = "students"
     db_port   = "3306"

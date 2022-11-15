@@ -54,6 +54,8 @@ data "template_file" "data-server_user-data" {
     git_uri           = var.git_uri
     git_uri_app-path  = var.git_uri_app-path
     docker_file       = data.template_file.data-server_user-data_dockerfile.rendered
+    nginx_config      = data.template_file.data-server_user-data_nginx_config.rendered
+    nginx_html        = data.template_file.data-server_user-data_nginx_html.rendered
 
     db_host     = var.db["db_host"]
     db_user     = var.db["db_user"]
@@ -66,13 +68,30 @@ data "template_file" "data-server_user-data" {
 
 // Create dockerfile
 data "template_file" "data-server_user-data_dockerfile" {
-  template = file("${path.module}/templates/docker-compose.yml")
+  template = file("${path.module}/templates/docker-compose.yaml")
   vars = {
+    lab_fqdn    = var.lab_fqdn
     db_host     = var.db["db_host"]
     db_user     = var.db["db_user"]
     db_pass     = var.db["db_pass"]
     db_name     = var.db["db_name"]
     db_table    = var.db["db_table"]
     db_port     = var.db["db_port"]
+  }
+}
+
+// Create nginx config
+data "template_file" "data-server_user-data_nginx_config" {
+  template = file("${path.module}/templates/nginx_config.tpl")
+  vars = {
+    externalid-token  = var.externalid-token
+  }
+}
+
+// Create nginx html
+data "template_file" "data-server_user-data_nginx_html" {
+  template = file("${path.module}/templates/nginx_html.tpl")
+  vars = {
+    lab_fqdn  = var.lab_fqdn
   }
 }
