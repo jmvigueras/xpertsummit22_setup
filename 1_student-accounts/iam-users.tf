@@ -1,8 +1,8 @@
 # Create new random string External ID for assume role
 resource "random_string" "externalid_token" {
-  length                 = 30
-  special                = false
-  numeric                = true
+  length  = 30
+  special = false
+  numeric = true
 }
 
 #######################################################################################
@@ -14,14 +14,14 @@ resource "random_string" "externalid_token" {
 #######################################################################################
 
 module "iam-users" {
-  source =  "./modules/iam-users"
-  count = length(var.regions)
+  source = "./modules/iam-users"
+  count  = length(var.regions)
 
-  prefix            = var.prefix
-  externalid_token  = random_string.externalid_token.result
-  tags              = var.tags
-  user_number       = var.user_number-peer-region
-  user_path-prefix  = var.user_path-prefix
-  region            = var.regions[count.index]
-  group_name        = aws_iam_group.group[count.index].name
+  prefix           = var.prefix
+  externalid_token = random_string.externalid_token.result
+  tags             = var.tags
+  user_number      = var.user_number-peer-region
+  user_path-prefix = var.user_path-prefix
+  region           = var.regions[count.index]
+  group_name       = aws_iam_group.group[count.index].name
 }

@@ -42,7 +42,7 @@ services:
     environment:
       PMA_HOST: mysqldb
       PMA_PORT: 3306
-      PMA_ABSOLUTE_URI: http://${lab_fqdn}/admindb/
+      PMA_ABSOLUTE_URI: http://${lab_fqdn}/${random-url-db}/
     networks:
       - frontweb
   checkscript:

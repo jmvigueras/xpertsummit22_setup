@@ -14,16 +14,16 @@ variable "prefix" {
 variable "tags" {
   description = "Attribute for tag Enviroment"
   type        = map(any)
-  default     = {
-    Project   = "xpertsummit22"
+  default = {
+    Project = "xpertsummit22"
   }
 }
 
 variable "regions" {
   description = "Regions where create users"
   type        = list(string)
-  default     = [
- //   "eu-west-1",
+  default = [
+    //   "eu-west-1",
     "eu-west-2",
     "eu-west-3"
   ]

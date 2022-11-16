@@ -14,8 +14,8 @@ variable "secret_key" {}
 variable "tags" {
   description = "Attribute for tag Enviroment"
   type        = map(any)
-  default     = {
-    Project   = "xpertsummit22"
+  default = {
+    Project = "xpertsummit22"
   }
 }
 
@@ -33,12 +33,12 @@ variable "region" {
 variable "users_path-prefix" {
   description = "Path prefix where users have been allocated"
   type        = string
-  default     = "/xpertsummit22/" 
+  default     = "/xpertsummit22/"
 }
 
 // CIDR range to use for your VCP Cloud9 - Subnet will be configured with first half of the range
-variable "vpc-cloud9_cidr"{
-  description = "Path prefix where users have been allocated" 
+variable "vpc-cloud9_cidr" {
+  description = "Path prefix where users have been allocated"
   type        = string
   default     = "172.31.0.0/23"
 }
